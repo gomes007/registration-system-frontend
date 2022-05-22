@@ -8,8 +8,8 @@ const saveEmployee = (employee) => {
     return axios.post(API_URL, employee);
 }
 
-const saveAddress = (address) => {
-    return axios.post(API_URL, address);
+const saveAddress = (employee, address) => {
+    return axios.post(API_URL, employee, address);
 }
 
 const deleteEmployee = (employee) => {

@@ -18,8 +18,6 @@ export default function ListPageComponent() {
     return (
         <div className="container">
             <div className="pt-5">
-
-
                 <div className="card">
                     <div className="card-header">
                         <h3>List of Employees</h3>
@@ -30,16 +28,15 @@ export default function ListPageComponent() {
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Name</th>
-                                <th scope="col">phone</th>
+                                <th scope="col">street</th>
                             </tr>
                             </thead>
                             <tbody>
-
                             {list.map((item, ind) =>
                                 <tr key={item.id}>
                                     <th scope="row">{ind + 1}</th>
                                     <td>{item.name}</td>
-                                    <td>{item.phone}</td>
+                                    <td>{item.street}</td>
                                 </tr>
                             )}
                             </tbody>
