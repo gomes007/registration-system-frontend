@@ -28,7 +28,8 @@ export default function ListPageComponent() {
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Name</th>
-                                <th scope="col">street</th>
+                                <th scope="col">gender</th>
+                                <th scope="col">retired</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -36,7 +37,8 @@ export default function ListPageComponent() {
                                 <tr key={item.id}>
                                     <th scope="row">{ind + 1}</th>
                                     <td>{item.name}</td>
-                                    <td>{item.street}</td>
+                                    <td>{item.gender}</td>
+                                    <td>{item.retired}</td>
                                 </tr>
                             )}
                             </tbody>

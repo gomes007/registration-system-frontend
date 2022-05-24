@@ -8,9 +8,6 @@ const saveEmployee = (employee) => {
     return axios.post(API_URL, employee);
 }
 
-const saveAddress = (employee, address) => {
-    return axios.post(API_URL, employee, address);
-}
 
 const deleteEmployee = (employee) => {
     return axios.delete(API_URL + '/' + employee.id);
@@ -20,5 +17,5 @@ const getAllEmployee = () => {
     return axios.get(API_URL);
 }
 
-export {saveEmployee, saveAddress, deleteEmployee, getAllEmployee};
+export {saveEmployee, deleteEmployee, getAllEmployee};
 
