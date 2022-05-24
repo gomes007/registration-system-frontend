@@ -20,6 +20,7 @@ const NavBar = () => {
                         List Employee
                     </NavLink>
                 </li>
+
             </div>
         </nav>
     )

@@ -3,7 +3,7 @@ import AddressModel from "./AddressModel";
 export default class EmployeeModel {
     id;
     constructor(name = '', email= '', cpf= '', phone= '', birthDate= '', gender= '',
-                retired= '', maritalStatus= '', otherInformations= '', salary= '', languages= [],
+                retired= false, maritalStatus= '', otherInformations= '', salary= '', languages= [],
                 address = []) {
 
         this.name = name;

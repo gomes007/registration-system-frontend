@@ -30,6 +30,10 @@ export default function ListPageComponent() {
                                 <th scope="col">Name</th>
                                 <th scope="col">gender</th>
                                 <th scope="col">retired</th>
+                                <th scope="col">Other Informations</th>
+                                <th scope="col">Birth Date</th>
+                                <th scope="col">Languages</th>
+                                <th scope="col">Salary</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -39,6 +43,10 @@ export default function ListPageComponent() {
                                     <td>{item.name}</td>
                                     <td>{item.gender}</td>
                                     <td>{item.retired}</td>
+                                    <td>{item.otherInformations}</td>
+                                    <td>{item.birthDate}</td>
+                                    <td>{item.languages}</td>
+                                    <td>{item.salary}</td>
                                 </tr>
                             )}
                             </tbody>
