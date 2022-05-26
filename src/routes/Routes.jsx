@@ -3,6 +3,7 @@ import HomePageComponent from "../pages/home/HomePageComponent";
 import RegistrationPageComponent from "../pages/registration/RegistrationPageComponent";
 import ListPageComponent from "../pages/list/ListPageComponent";
 import {NavBar} from "../components/NavBar";
+import ListPageComponentTable from "../pages/list/ListPageComponentTable";
 
 export default function AppRouter() {
     return (
@@ -12,7 +13,7 @@ export default function AppRouter() {
                 <Routes>
                     <Route path="/" element={<HomePageComponent/>}/>
                     <Route path="/registration" element={<RegistrationPageComponent/>}/>
-                    <Route path="/list" element={<ListPageComponent/>}/>
+                    <Route path="/list" element={<ListPageComponentTable/>}/>
                 </Routes>
             </div>
         </BrowserRouter>

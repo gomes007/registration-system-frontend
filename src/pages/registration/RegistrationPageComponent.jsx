@@ -55,6 +55,8 @@ export default function RegistrationPageComponent() {
     }
 
 
+
+
     const clickSaveAddress = () => {
         const listAddress = address;
         listAddress.push(new AddressModel(street, number, neighborhood, zipCode, complement, city, state));
