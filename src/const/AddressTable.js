@@ -30,37 +30,18 @@ const AddressTable = (props) => {
     //------------------------------EDIT-------------------------//
     const saveComponent = useRef();
 
-    const [addressList, setAddressList] = useState([])
+
+
     const [selectedAddress, setselectedAddress] = useState(new AddressModel('','','','','','',''));
 
-    const createProductRequest = () => {
-        setselectedAddress(new AddressModel('','','','','','',''))
-        saveComponent.current?.showProductModal();
-    }
-
-    const saveAddressWatcher = (address) => {
-        let itemIndex = addressList.findIndex(item => item.id === address.id);
-        if (itemIndex !== -1) {
-            const newList = addressList.map((item) => {
-                if (item.id === address.id) {
-                    return address;
-                }
-                return item;
-            });
-            setAddressList(newList);
-        } else {
-            const newList = addressList.concat(address);
-            setAddressList(newList);
-        }
-    }
 
     const editAddressRequest = (item) => {
         setselectedAddress(Object.assign({}, item));
-        saveComponent.current?.showProductModal();
+        saveComponent.current?.showAddressModal();
     }
 
 
-    //Delete
+    //Delete---------------------------------------------------------------
     const deleteComponent = useRef();
     const deleteAddressRequest = () => {
         deleteComponent.current?.showDeleteModal();
@@ -77,7 +58,7 @@ const AddressTable = (props) => {
 
     return (
         <div>
-            List of Addresses
+
             <table className="table table-striped">
                 <thead>
                 <tr>
@@ -105,11 +86,10 @@ const AddressTable = (props) => {
                         <td>{item.city}</td>
                         <td>{item.state}</td>
                         <td>
-                            <button type="button" className="btn btn-info btn-sm" onClick={() => clickEdit(index)}>Edit</button>
+                            <button className="btn btn-primary btn-sm" onClick={() => editAddressRequest(item)}>Edit</button>
                         </td>
                         <td>
                             <button type="button" className="btn btn-danger btn-sm" onClick={() => deleteAddressRequest(item)}>Delete</button>
-                            <button className="btn btn-primary me-1" onClick={() => editAddressRequest(item)}>EditRequest</button>
                         </td>
                     </tr>
                 )}
@@ -120,7 +100,7 @@ const AddressTable = (props) => {
 
             <AddressDelete ref={deleteComponent} onConfirmed={() => deleteAddress()}/>
 
-            <AddressEdit ref={saveComponent} product={selectedAddress} onSaved={(a) => saveAddressWatcher(a)}/>
+            <AddressEdit ref={saveComponent} address={selectedAddress}/>
 
         </div>
     )

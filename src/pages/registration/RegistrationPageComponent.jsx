@@ -40,8 +40,6 @@ export default function RegistrationPageComponent() {
     const [infoMessage, setInfoMessage] = useState('');
 
 
-
-
     const clickSaveEmployee = () => {
         const employee = new EmployeeModel(name, email, cpf, phone, birthDate, gender,
             retired, maritalStatus, otherInformations, salary, languages, address);
@@ -53,8 +51,6 @@ export default function RegistrationPageComponent() {
             console.log(err);
         })
     }
-
-
 
 
     const clickSaveAddress = () => {
@@ -95,7 +91,6 @@ export default function RegistrationPageComponent() {
     };
 
 
-
     return (
         <div className="container">
             <div className="pt-5">
@@ -103,6 +98,7 @@ export default function RegistrationPageComponent() {
                     <div className="card-header">
                         <h3>Registration Page</h3>
                     </div>
+                    <br/>
                     <Tabs defaultActiveKey="profile" transition={false} id="noanim-tab-example" className="mb-3">
                         <Tab eventKey="profile" title="Profile">
                             <div className="card-body">
@@ -190,7 +186,6 @@ export default function RegistrationPageComponent() {
                                     </div>
 
 
-
                                     <div className="form-group col-2">
                                         <label htmlFor="salary">Salary:</label>
                                         <input type="number" name="salary" value={salary}
@@ -218,7 +213,8 @@ export default function RegistrationPageComponent() {
                                     <div className="form-group col-3">
                                         <label htmlFor="complement">complement:</label>
                                         <input type="text" name="complement" value={complement}
-                                               onChange={(e) => setComplement(e.target.value)} className="form-control"/>
+                                               onChange={(e) => setComplement(e.target.value)}
+                                               className="form-control"/>
                                     </div>
                                     <div className="form-group col-2">
                                         <label htmlFor="zipCode">zipCode:</label>
@@ -235,9 +231,10 @@ export default function RegistrationPageComponent() {
                                         <input type="text" name="city" value={city}
                                                onChange={(e) => setCity(e.target.value)} className="form-control"/>
                                     </div>
-                                    <br/>
-                                    <AddressTable items={address} setAddress={setAddress}/>
+
                                 </div>
+                                <br/>
+                                <AddressTable items={address} setAddress={setAddress}/>
                                 <br/>
                                 <button className="btn btn-dark" onClick={clickSaveAddress}>Add Address</button>
                             </div>
