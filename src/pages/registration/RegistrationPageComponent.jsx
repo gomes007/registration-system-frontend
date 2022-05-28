@@ -8,7 +8,7 @@ import {InputTextarea} from "primereact/inputtextarea";
 import {Checkbox} from 'primereact/checkbox';
 import {Switch} from '@material-ui/core';
 import AddressModel from "../../model/AddressModel";
-import {AddressTable} from "../../components/AddressTable";
+import {AddressTable} from "../../const/AddressTable";
 
 
 export default function RegistrationPageComponent() {
@@ -239,7 +239,7 @@ export default function RegistrationPageComponent() {
                                     <AddressTable items={address} setAddress={setAddress}/>
                                 </div>
                                 <br/>
-                                <button className="btn btn-primary" onClick={clickSaveAddress}>AddAddress</button>
+                                <button className="btn btn-dark" onClick={clickSaveAddress}>Add Address</button>
                             </div>
                         </Tab>
                         <br/>
