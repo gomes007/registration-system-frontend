@@ -15,10 +15,10 @@ const AddressEdit = forwardRef((props, ref) => {
     }));
 
 
-    //to be used to edit
+
     useEffect(() => {
-        setAddress(props.product);
-    }, [props.product]);
+        setAddress(props.address);
+    }, [props.address]);
 
 
     const [address, setAddress] = useState(new AddressModel('','','','','','',''));
