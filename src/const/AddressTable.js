@@ -1,14 +1,13 @@
 import {useRef, useState} from "react";
-import {Dialog} from "../components/Dialog";
 import {AddressDelete} from "../components/AddressDelete";
-import AddressModel from "../model/AddressModel";
-import {AddressEdit} from "../components/AddressEdit";
+import {Dialog} from "./Dialog";
+
 
 
 
 const AddressTable = (props) => {
 
-    //Edit
+    //---------------Edit---------------------------------------------
     const [dialogOpen, setDialogOpen] = useState(false);
 
     const closeDialog = () => {
@@ -27,21 +26,21 @@ const AddressTable = (props) => {
         console.log();
     }
 
+    /*
     //------------------------------EDIT-------------------------//
     const saveComponent = useRef();
 
-
-
     const [selectedAddress, setselectedAddress] = useState(new AddressModel('','','','','','',''));
-
 
     const editAddressRequest = (item) => {
         setselectedAddress(Object.assign({}, item));
         saveComponent.current?.showAddressModal();
     }
 
+     */
 
-    //Delete---------------------------------------------------------------
+
+    //---------------------------Delete----------------------------//
     const deleteComponent = useRef();
     const deleteAddressRequest = () => {
         deleteComponent.current?.showDeleteModal();
@@ -86,7 +85,8 @@ const AddressTable = (props) => {
                         <td>{item.city}</td>
                         <td>{item.state}</td>
                         <td>
-                            <button className="btn btn-primary btn-sm" onClick={() => editAddressRequest(item)}>Edit</button>
+                            {/*<button className="btn btn-primary btn-sm" onClick={() => editAddressRequest(item)}>Edit</button>*/}
+                            <button type="button" className="btn btn-info btn-sm" onClick={() => clickEdit(index)}>EditH</button>
                         </td>
                         <td>
                             <button type="button" className="btn btn-danger btn-sm" onClick={() => deleteAddressRequest(item)}>Delete</button>
@@ -100,7 +100,7 @@ const AddressTable = (props) => {
 
             <AddressDelete ref={deleteComponent} onConfirmed={() => deleteAddress()}/>
 
-            <AddressEdit ref={saveComponent} address={selectedAddress}/>
+            {/*<AddressEdit ref={saveComponent} address={selectedAddress}/>*/}
 
         </div>
     )

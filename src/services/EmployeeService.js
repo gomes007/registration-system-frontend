@@ -1,5 +1,5 @@
 import axios from "axios";
-import {BASE_API_URL} from "../const/Constants";
+import {BASE_API_URL} from "../common/constants";
 
 const API_URL = BASE_API_URL + '/api/employee'
 
