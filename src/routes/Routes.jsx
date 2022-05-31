@@ -20,8 +20,17 @@ export default function AppRouter() {
                 <Routes>
                     <Route path="/" element={<HomePageComponent/>}/>
 
-                    <Route path="/registration" element={<RegistrationPageComponent/>}/>
-                    <Route path="/list" element={<ListPageComponentTable/>}/>
+                    <Route path="/registration" element={
+                        <AuthGuard roles={[Role.ADMIN, Role.USER]}>
+                            <RegistrationPageComponent/>
+                        </AuthGuard>
+                    }/>
+
+                    <Route path="/list" element={
+                        <AuthGuard roles={[Role.ADMIN, Role.USER]}>
+                            <ListPageComponentTable/>
+                        </AuthGuard>
+                    }/>
 
                     <Route path="/login" element={<LoginPage/>}/>
                     <Route path="/register" element={<RegisterPage/>}/>
