@@ -12,10 +12,12 @@ import {NotFoundPage} from "../pages/not-found/not-found.page";
 import {Role} from "../model/role";
 import {ProfilePage} from "../pages/profile/profile.page";
 
+
 export default function AppRouter() {
     return (
         <BrowserRouter>
             <NavBar/>
+
             <div className="container">
                 <Routes>
                     <Route path="/" element={<HomePageComponent/>}/>

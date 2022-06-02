@@ -1,6 +1,6 @@
 import {useRef, useState} from "react";
 import {AddressDelete} from "../components/AddressDelete";
-import {Dialog} from "./Dialog";
+import {Dialog} from "../components/Dialog";
 
 
 
@@ -16,15 +16,22 @@ const AddressTable = (props) => {
 
     const[chosedAddress, setChosedAddress] = useState({});
 
-    const clickEdit = (index) => {
-        setChosedAddress(props.items[index])
+    const [index, setIndex] = useState(0);
+
+    const clickEdit = (i) => {
+        setIndex(i)
+        setChosedAddress(props.items[i])
         setDialogOpen(true);
     }
 
 
-    const confirmEdit = () => {
-        console.log();
+    const confirmEdit = (actualAddress) => {
+        const addressList = props.items;
+        addressList[index] = actualAddress;
+        props.setAddress(addressList);
     }
+
+
 
     /*
     //------------------------------EDIT-------------------------//
@@ -96,7 +103,8 @@ const AddressTable = (props) => {
                 </tbody>
             </table>
 
-            <Dialog setDialogOpen={setDialogOpen} dialogOpen={dialogOpen} address={chosedAddress} setAddress={setChosedAddress}/>
+            <Dialog setDialogOpen={setDialogOpen} dialogOpen={dialogOpen} address={chosedAddress} setAddress={setChosedAddress}
+            confirmEdit={confirmEdit}/>
 
             <AddressDelete ref={deleteComponent} onConfirmed={() => deleteAddress()}/>
 

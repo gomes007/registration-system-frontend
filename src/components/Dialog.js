@@ -1,18 +1,40 @@
 import {Modal} from 'react-bootstrap';
-import {useState} from "react";
+import {useState, useEffect} from "react";
+import {getAllEmployee} from "../services/EmployeeService";
+import AddressModel from "../model/AddressModel";
 
 
 const Dialog = (props) => {
 
     //console.log(props.address);
 
-    const [street, setStreet] = useState(props.address.street);
-    const [number, setNumber] = useState(props.address.number);
-    const [neighborhood, setNeighborhood] = useState(props.address.neighborhood);
-    const [zipCode, setZipCode] = useState(props.address.zipCode);
-    const [complement, setComplement] = useState(props.address.complement);
-    const [city, setCity] = useState(props.address.city);
-    const [state, setState] = useState(props.address.state);
+
+
+
+    const [street, setStreet] = useState('');
+    const [number, setNumber] = useState('');
+    const [neighborhood, setNeighborhood] = useState('');
+    const [zipCode, setZipCode] = useState('');
+    const [complement, setComplement] = useState('');
+    const [city, setCity] = useState('');
+    const [state, setState] = useState('');
+
+
+    useEffect(() => {
+        setStreet(props.address.street ?? '');
+        setNumber(props.address.number ?? '');
+        setNeighborhood(props.address.neighborhood ?? '');
+        setZipCode(props.address.zipCode ?? '');
+        setComplement(props.address.complement ?? '');
+        setCity(props.address.city ?? '');
+        setState(props.address.state ?? '');
+    }, [props.address])
+
+
+    const clickConfirm = () => {
+        props.confirmEdit(new AddressModel(street, number, neighborhood, zipCode, complement, city, state));
+        props.setDialogOpen(false);
+    }
 
     return (
         <Modal show={props.dialogOpen}>
@@ -64,7 +86,7 @@ const Dialog = (props) => {
             <div className="modal-footer">
                 <button type="button" className="btn btn-secondary" onClick={() => props.setDialogOpen(false)}>Cancel
                 </button>
-                <button type="button" className="btn btn-danger">I'm sure!</button>
+                <button type="button" onClick={clickConfirm} className="btn btn-danger">I'm sure!</button>
             </div>
 
         </Modal>
