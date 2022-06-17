@@ -9,6 +9,8 @@ import {Checkbox} from 'primereact/checkbox';
 import {Switch} from '@material-ui/core';
 import AddressModel from "../../model/AddressModel";
 import {AddressTable} from "../../const/AddressTable";
+import UploadImages from "../../components/UploadImages";
+
 
 
 export default function RegistrationPageComponent() {
@@ -35,9 +37,6 @@ export default function RegistrationPageComponent() {
     const [state, setState] = useState('');
 
 
-    const [checked, setChecked] = useState(false);
-    const [errorMessage, setErrorMessage] = useState('');
-    const [infoMessage, setInfoMessage] = useState('');
 
 
     const clickSaveEmployee = () => {
@@ -45,9 +44,7 @@ export default function RegistrationPageComponent() {
             retired, maritalStatus, otherInformations, salary, languages, address);
         saveEmployee(employee).then(() => {
             cleanEmployeeField();
-            setInfoMessage('Saved with success!');
         }).catch((err) => {
-            setErrorMessage('Unexpected error occurred.');
             console.log(err);
         })
     }
@@ -92,8 +89,9 @@ export default function RegistrationPageComponent() {
 
 
     return (
-        <div className="container">
-            <div className="pt-5">
+        <div className="container content">
+            <div className="pt-2">
+
                 <div className="card">
                     <div className="card-header">
                         <h3>Registration Page</h3>
@@ -103,6 +101,7 @@ export default function RegistrationPageComponent() {
                         <Tab eventKey="profile" title="Profile">
                             <div className="card-body">
                                 <div className="row">
+                                    <UploadImages/>
                                     <div className="form-group col-6">
                                         <label htmlFor="name">Name:</label>
                                         <input type="text" name="name" value={name}
@@ -240,7 +239,6 @@ export default function RegistrationPageComponent() {
                             </div>
                         </Tab>
                         <br/>
-
                     </Tabs>
 
                 </div>

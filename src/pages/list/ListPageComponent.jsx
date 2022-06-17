@@ -16,7 +16,7 @@ export default function ListPageComponent() {
 
 
     return (
-        <div className="container">
+        <div className="container content">
             <div className="pt-5">
                 <div className="card">
                     <div className="card-header">

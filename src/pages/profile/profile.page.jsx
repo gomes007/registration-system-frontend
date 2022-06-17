@@ -1,6 +1,8 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 
+
+
 const ProfilePage = () => {
 
     const currentUser = useSelector(state => state.user);
@@ -9,7 +11,7 @@ const ProfilePage = () => {
 
 
     return (
-        <div className="container">
+        <div className="container content">
             <div className="pt-5">
                 <div className="card">
                     <div className="card-header">

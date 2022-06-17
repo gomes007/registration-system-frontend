@@ -3,18 +3,12 @@ import {AddressDelete} from "../components/AddressDelete";
 import {Dialog} from "../components/Dialog";
 
 
-
-
 const AddressTable = (props) => {
 
-    //---------------Edit---------------------------------------------
+    //---------------Edit------------------------------------------//
     const [dialogOpen, setDialogOpen] = useState(false);
 
-    const closeDialog = () => {
-        setDialogOpen(false);
-    }
-
-    const[chosedAddress, setChosedAddress] = useState({});
+    const [chosedAddress, setChosedAddress] = useState({});
 
     const [index, setIndex] = useState(0);
 
@@ -32,21 +26,6 @@ const AddressTable = (props) => {
     }
 
 
-
-    /*
-    //------------------------------EDIT-------------------------//
-    const saveComponent = useRef();
-
-    const [selectedAddress, setselectedAddress] = useState(new AddressModel('','','','','','',''));
-
-    const editAddressRequest = (item) => {
-        setselectedAddress(Object.assign({}, item));
-        saveComponent.current?.showAddressModal();
-    }
-
-     */
-
-
     //---------------------------Delete----------------------------//
     const deleteComponent = useRef();
     const deleteAddressRequest = () => {
@@ -58,8 +37,6 @@ const AddressTable = (props) => {
         listAddress.splice(index, 1);
         props.setAddress([...listAddress]);
     }
-
-
 
 
     return (
@@ -92,23 +69,25 @@ const AddressTable = (props) => {
                         <td>{item.city}</td>
                         <td>{item.state}</td>
                         <td>
-                            {/*<button className="btn btn-primary btn-sm" onClick={() => editAddressRequest(item)}>Edit</button>*/}
-                            <button type="button" className="btn btn-info btn-sm" onClick={() => clickEdit(index)}>EditH</button>
+                            <button type="button" className="btn btn-info btn-sm"
+                                    onClick={() => clickEdit(index)}>Edit
+                            </button>
                         </td>
                         <td>
-                            <button type="button" className="btn btn-danger btn-sm" onClick={() => deleteAddressRequest(item)}>Delete</button>
+                            <button type="button" className="btn btn-danger btn-sm"
+                                    onClick={() => deleteAddressRequest(item)}>Delete
+                            </button>
                         </td>
                     </tr>
                 )}
                 </tbody>
             </table>
 
-            <Dialog setDialogOpen={setDialogOpen} dialogOpen={dialogOpen} address={chosedAddress} setAddress={setChosedAddress}
-            confirmEdit={confirmEdit}/>
+            <Dialog setDialogOpen={setDialogOpen} dialogOpen={dialogOpen} address={chosedAddress}
+                    setAddress={setChosedAddress}
+                    confirmEdit={confirmEdit}/>
 
             <AddressDelete ref={deleteComponent} onConfirmed={() => deleteAddress()}/>
-
-            {/*<AddressEdit ref={saveComponent} address={selectedAddress}/>*/}
 
         </div>
     )

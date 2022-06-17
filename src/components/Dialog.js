@@ -1,15 +1,9 @@
 import {Modal} from 'react-bootstrap';
 import {useState, useEffect} from "react";
-import {getAllEmployee} from "../services/EmployeeService";
 import AddressModel from "../model/AddressModel";
 
 
 const Dialog = (props) => {
-
-    //console.log(props.address);
-
-
-
 
     const [street, setStreet] = useState('');
     const [number, setNumber] = useState('');
@@ -51,7 +45,6 @@ const Dialog = (props) => {
                         <input type="text" name="street" value={street}
                                onChange={(e) => setStreet(e.target.value)} className="form-control"/>
                     </div>
-
                     <div className="form-group col-2">
                         <label htmlFor="number">number:</label>
                         <input type="text" name="number" value={number}
@@ -84,8 +77,7 @@ const Dialog = (props) => {
             </div>
 
             <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" onClick={() => props.setDialogOpen(false)}>Cancel
-                </button>
+                <button type="button" className="btn btn-secondary" onClick={() => props.setDialogOpen(false)}>Cancel</button>
                 <button type="button" onClick={clickConfirm} className="btn btn-danger">I'm sure!</button>
             </div>
 

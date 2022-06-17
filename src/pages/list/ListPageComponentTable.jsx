@@ -39,8 +39,8 @@ export default function ListPageComponentTable() {
 
 
     return (
-        <div className="container">
-            <div className="pt-5">
+        <div className="container content">
+            <div className="pt-2">
                 <div className="card">
                     <div className="card-header">
                         <h3>List of Employees</h3>

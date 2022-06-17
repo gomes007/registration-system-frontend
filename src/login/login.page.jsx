@@ -9,6 +9,7 @@ import AuthenticationService from '../services/authentication.service';
 import { BsFillPersonFill } from "react-icons/bs";
 import User from "../model/user";
 
+
 const LoginPage = () => {
 
     const [user, setUser] = useState(new User('', '', ''));
@@ -64,6 +65,8 @@ const LoginPage = () => {
          setLoading(false);
       });
     };
+
+
 
     return (
         <div className="container mt-5">
@@ -123,6 +126,10 @@ const LoginPage = () => {
 
                 <Link to="/register" className="btn btn-link" style={{color: 'darkgray'}}>
                     Create New Account!
+                </Link>
+
+                <Link to="/forgotPassword" className="btn btn-link" style={{color: 'darkgray'}}>
+                    Forgot Password
                 </Link>
 
             </div>

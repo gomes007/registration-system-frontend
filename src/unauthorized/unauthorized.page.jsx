@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const UnauthorizedPage = () => {
     return(
-        <div className="container">
+        <div className="container content">
             <div className="row">
                 <div className="col-md-12 text-center">
                     <span className="display-1">

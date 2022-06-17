@@ -11,14 +11,18 @@ import {UnauthorizedPage} from "../unauthorized/unauthorized.page";
 import {NotFoundPage} from "../pages/not-found/not-found.page";
 import {Role} from "../model/role";
 import {ProfilePage} from "../pages/profile/profile.page";
+import {FileUploadDemo} from "../components/FileUploadDemo";
+import {ForgotPassword} from "../pages/profile/forgotPassword";
 
 
 export default function AppRouter() {
     return (
-        <BrowserRouter>
-            <NavBar/>
 
+        <BrowserRouter>
+
+            <NavBar/>
             <div className="container">
+
                 <Routes>
                     <Route path="/" element={<HomePageComponent/>}/>
 
@@ -34,8 +38,15 @@ export default function AppRouter() {
                         </AuthGuard>
                     }/>
 
+                    <Route path="/image" element={
+                        <AuthGuard roles={[Role.ADMIN, Role.USER]}>
+                            <FileUploadDemo/>
+                        </AuthGuard>
+                    }/>
+
                     <Route path="/login" element={<LoginPage/>}/>
                     <Route path="/register" element={<RegisterPage/>}/>
+                    <Route path="/forgotPassword" element={<ForgotPassword/>}/>
 
                     <Route path="/admin" element={
                         <AuthGuard roles={[Role.ADMIN]}>
