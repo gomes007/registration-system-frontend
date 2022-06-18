@@ -4,8 +4,6 @@ import authenticationService from "../../services/authentication.service";
 import {useSearchParams} from "react-router-dom";
 
 
-
-
 const RecoveryPassword = () => {
 
     const [password, setPassword] = useState('');
