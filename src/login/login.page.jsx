@@ -125,7 +125,7 @@ const LoginPage = () => {
                 </form>
 
                 <Link to="/register" className="btn btn-link" style={{color: 'darkgray'}}>
-                    Create New Account!
+                    Create New Account
                 </Link>
 
                 <Link to="/forgotPassword" className="btn btn-link" style={{color: 'darkgray'}}>

@@ -1,29 +1,38 @@
 import {useState} from "react";
 import User from "../../model/user";
 import authenticationService from "../../services/authentication.service";
+import {useSearchParams} from "react-router-dom";
 
 
-const ForgotPassword = () => {
 
-    const [username, setUsername] = useState('');
+
+const RecoveryPassword = () => {
+
+    const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
-    const [loading, setLoading] = useState(false);
+
+    const [searchParam, setSearchParam] = useSearchParams();
+
 
     const sendForgotPassword = () => {
-        const user = new User(username);
-        setLoading(true);
-        authenticationService.forgotPassword(user).then(() => {
-            setMessage("link sent to email");
-            cleanEmailField();
-            setLoading(false);
+
+        const user = new User();
+        user.password = password;
+        user.username = searchParam.get('username');
+        user.secret = searchParam.get('secret')
+        authenticationService.changePassword(user).then(() => {
+            setMessage("password changed!");
+            cleanPasswordField();
         }).catch((err) => {
             console.log(err);
-            setLoading(false);
         })
     }
 
-    function cleanEmailField() {
-        setUsername('');
+
+
+
+    function cleanPasswordField() {
+        setPassword('');
     }
 
 
@@ -35,21 +44,17 @@ const ForgotPassword = () => {
 
                         <div className="row">
                             <div className="col-6">
-                                <h3>Forgot Password Page</h3>
+                                <h3>Recovery password</h3>
                                 <div className="form-group col-12">
-                                    <label htmlFor="username">email:</label>
-                                    <input type="text" name="username" value={username}
-                                           onChange={(e) => setUsername(e.target.value)} className="form-control"/>
+                                    <label htmlFor="password">password:</label>
+                                    <input type="text" name="password" value={password}
+                                           onChange={(e) => setPassword(e.target.value)} className="form-control"/>
                                 </div>
                             </div>
 
                         </div>
 
                     </div>
-                    {loading &&
-                        <div className="spinner-border text-primary" role="status">
-
-                        </div>}
                     {message &&
                         <div className="alert alert-success">
                             {message}
@@ -64,4 +69,4 @@ const ForgotPassword = () => {
     )
 }
 
-export {ForgotPassword}
+export {RecoveryPassword}

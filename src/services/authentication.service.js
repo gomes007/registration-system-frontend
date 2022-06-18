@@ -17,6 +17,10 @@ class AuthenticationService {
         return axios.post(BASE_URL + '/forgot', user);
     }
 
+    changePassword (user) {
+        return axios.post(BASE_URL + '/password-change', user);
+    }
+
 }
 
 export default new AuthenticationService();

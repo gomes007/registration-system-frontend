@@ -13,6 +13,7 @@ import {Role} from "../model/role";
 import {ProfilePage} from "../pages/profile/profile.page";
 import {FileUploadDemo} from "../components/FileUploadDemo";
 import {ForgotPassword} from "../pages/profile/forgotPassword";
+import {RecoveryPassword} from "../pages/recovery/recovery";
 
 
 export default function AppRouter() {
@@ -47,6 +48,7 @@ export default function AppRouter() {
                     <Route path="/login" element={<LoginPage/>}/>
                     <Route path="/register" element={<RegisterPage/>}/>
                     <Route path="/forgotPassword" element={<ForgotPassword/>}/>
+                    <Route path="/recovery" element={<RecoveryPassword/>}/>
 
                     <Route path="/admin" element={
                         <AuthGuard roles={[Role.ADMIN]}>
