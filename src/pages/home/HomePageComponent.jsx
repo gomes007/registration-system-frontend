@@ -1,62 +1,27 @@
-import {Box, Container, Grid, Typography} from "@mui/material";
-import {Budget} from "../../components/budget";
-import {TotalCustomers} from "../../components/total-customers";
-import {Sales} from "../../components/sales";
-
-import UploadImages from "../../components/UploadImages";
-import {Img} from "../../components/Img";
-
-
-
+import {useEffect, useState} from "react";
+import {getAllSale} from "../../services/SaleService";
+import SalesGraph from "./SalesGraph";
 
 export default function HomePageComponent(){
+
+    const [list, setList] = useState([]);
+
+    useEffect(() => {
+        setInterval(()=> {
+            getAllSale().then(res => {
+                setList(res.data)
+            }).catch((err) => {
+                console.log(err);
+            })
+        },100000000000)
+
+    }, [])
+
     return (
         <div className="content">
-            homePage
-            <Box
-                component="main"
-                sx={{
-                    flexGrow: 1,
-                    py: 8
-                }}
-            >
-                <Container maxWidth={false}>
-                    <Grid
-                        container
-                        spacing={3}
-                    >
-                        <Grid
-                            item
-                            lg={3}
-                            sm={6}
-                            xl={3}
-                            xs={12}
-                        >
-                            <Budget />
-                        </Grid>
-                        <Grid
-                            item
-                            xl={3}
-                            lg={3}
-                            sm={6}
-                            xs={12}
-                        >
-                            <TotalCustomers />
-                        </Grid>
-                        <Grid
-                            item
-                            lg={8}
-                            md={12}
-                            xl={9}
-                            xs={12}
-                        >
-                            <Sales />
-                        </Grid>
-                    </Grid>
-                </Container>
-            </Box>
-            <UploadImages/>
-            <Img/>
+
+            <SalesGraph data={list}/>
+
         </div>
     )
 }

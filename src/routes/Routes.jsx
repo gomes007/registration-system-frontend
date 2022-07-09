@@ -1,4 +1,4 @@
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
 import HomePageComponent from "../pages/home/HomePageComponent";
 import RegistrationPageComponent from "../pages/registration/RegistrationPageComponent";
 import ListPageComponentTable from "../pages/list/ListPageComponentTable";
@@ -14,6 +14,7 @@ import {ProfilePage} from "../pages/profile/profile.page";
 import {FileUploadDemo} from "../components/FileUploadDemo";
 import {ForgotPassword} from "../pages/profile/forgotPassword";
 import {RecoveryPassword} from "../pages/recovery/recovery";
+import {ConfirmPassword} from "../pages/recovery/ConfirmationPassword";
 
 
 export default function AppRouter() {
@@ -22,6 +23,7 @@ export default function AppRouter() {
         <BrowserRouter>
 
             <NavBar/>
+            {/*{window.location.pathname === '/login' ? null : <NavBar/>}*/}
             <div className="container">
 
                 <Routes>
@@ -49,6 +51,7 @@ export default function AppRouter() {
                     <Route path="/register" element={<RegisterPage/>}/>
                     <Route path="/forgotPassword" element={<ForgotPassword/>}/>
                     <Route path="/recovery" element={<RecoveryPassword/>}/>
+                    <Route path="/confirmation" element={<ConfirmPassword/>}/>
 
                     <Route path="/admin" element={
                         <AuthGuard roles={[Role.ADMIN]}>
