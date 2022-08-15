@@ -8,8 +8,10 @@ import {InputTextarea} from "primereact/inputtextarea";
 import {Checkbox} from 'primereact/checkbox';
 import {Switch} from '@material-ui/core';
 import AddressModel from "../../model/AddressModel";
-import {AddressTable} from "../../const/AddressTable";
-import UploadImages from "../../components/UploadImages";
+import {AddressTable} from "../../components/AddressTable";
+import {DependentTab} from "../../components/DependentTab";
+
+
 
 
 
@@ -36,12 +38,15 @@ export default function RegistrationPageComponent() {
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
 
+    const [dependents, SetDependents] = useState([]);
+
+
 
 
 
     const clickSaveEmployee = () => {
         const employee = new EmployeeModel(name, email, cpf, phone, birthDate, gender,
-            retired, maritalStatus, otherInformations, salary, languages, address);
+            retired, maritalStatus, otherInformations, salary, languages, address, dependents);
         saveEmployee(employee).then(() => {
             cleanEmployeeField();
         }).catch((err) => {
@@ -56,6 +61,7 @@ export default function RegistrationPageComponent() {
         setAddress(listAddress);
         cleanAddressField();
     }
+
 
 
     const onLanguageChange = (e) => {
@@ -101,7 +107,7 @@ export default function RegistrationPageComponent() {
                         <Tab eventKey="profile" title="Profile">
                             <div className="card-body">
                                 <div className="row">
-                                    <UploadImages/>
+
                                     <div className="form-group col-6">
                                         <label htmlFor="name">Name:</label>
                                         <input type="text" name="name" value={name}
@@ -239,11 +245,21 @@ export default function RegistrationPageComponent() {
                             </div>
                         </Tab>
                         <br/>
-                    </Tabs>
 
+                        <Tab eventKey="dependent" title="Family members">
+
+                            <DependentTab />
+
+                        </Tab>
+                        <br/>
+                    </Tabs>
+                    <br/>
+                    <div>
+                        <button className="btn btn-primary" onClick={clickSaveEmployee}>Save</button>
+                    </div>
                 </div>
                 <br/>
-                <button className="btn btn-primary" onClick={clickSaveEmployee}>Save</button>
+
             </div>
         </div>
     )

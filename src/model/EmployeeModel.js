@@ -4,7 +4,7 @@ export default class EmployeeModel {
     id;
     constructor(name = '', email= '', cpf= '', phone= '', birthDate= '', gender= '',
                 retired= false, maritalStatus= '', otherInformations= '', salary= '', languages= [],
-                address = []) {
+                address = [], dependents = []) {
 
         this.name = name;
         this.email = email;
@@ -18,5 +18,6 @@ export default class EmployeeModel {
         this.salary = salary;
         this.languages = languages;
         this.address = address;
+        this.dependents = dependents;
     }
 }

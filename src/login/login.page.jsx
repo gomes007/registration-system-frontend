@@ -1,12 +1,11 @@
 /* eslint-disable no-unused-vars */
 
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, Link } from 'react-router-dom';
-import { useState } from 'react';
-import {useEffect} from 'react';
-import { setCurrentUser } from '../store/actions/user';
+import {useDispatch, useSelector} from 'react-redux';
+import {Link, useNavigate} from 'react-router-dom';
+import {useEffect, useState} from 'react';
+import {setCurrentUser} from '../store/actions/user';
 import AuthenticationService from '../services/authentication.service';
-import { BsFillPersonFill } from "react-icons/bs";
+import {BsFillPersonFill} from "react-icons/bs";
 import User from "../model/user";
 
 

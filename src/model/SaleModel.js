@@ -1,4 +1,4 @@
-export default class Sale {
+export default class SaleModel {
     constructor(description, quantity, unitPrice, total, saleDate) {
         this.description = description;
         this.quantity= quantity;

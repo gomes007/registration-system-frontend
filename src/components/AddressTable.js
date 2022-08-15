@@ -1,6 +1,6 @@
 import {useRef, useState} from "react";
-import {AddressDelete} from "../components/AddressDelete";
-import {Dialog} from "../components/Dialog";
+import {AddressDelete} from "./AddressDelete";
+import {Dialog} from "./Dialog";
 
 
 const AddressTable = (props) => {
