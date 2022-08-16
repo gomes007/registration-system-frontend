@@ -37,7 +37,11 @@ export default function AppRouter() {
 
                 <Routes>
                     <Route element={<SidebarLayout/>}>
-                        <Route path="/" element={<HomePageComponent/>}/>
+                        <Route path="/" element={
+                            <AuthGuard roles={[Role.ADMIN, Role.USER]}>
+                                <HomePageComponent/>
+                            </AuthGuard>
+                        }/>
 
                         <Route path="/registration" element={
                             <AuthGuard roles={[Role.ADMIN, Role.USER]}>
