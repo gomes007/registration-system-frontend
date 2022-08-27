@@ -3,7 +3,7 @@ import {useState, useEffect} from "react";
 import AddressModel from "../model/AddressModel";
 
 
-const Dialog = (props) => {
+const AddressDialog = (props) => {
 
     const [street, setStreet] = useState('');
     const [number, setNumber] = useState('');
@@ -86,4 +86,4 @@ const Dialog = (props) => {
 
 };
 
-export {Dialog};
+export {AddressDialog};

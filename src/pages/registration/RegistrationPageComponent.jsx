@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useCallback, useState} from "react";
 import {saveEmployee} from "../../services/EmployeeService";
 import Tabs from "react-bootstrap/Tabs";
 import {Tab} from "react-bootstrap";
@@ -38,9 +38,7 @@ export default function RegistrationPageComponent() {
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
 
-    const [dependents, SetDependents] = useState([]);
-
-
+    const [dependents, setDependents] = useState([])
 
 
 
@@ -94,6 +92,11 @@ export default function RegistrationPageComponent() {
     };
 
 
+    const handleDependentsChange = useCallback((dependentsList) => {
+        setDependents(dependentsList);
+    }, []);
+
+
     return (
         <div className="container content">
             <div className="pt-2">
@@ -131,7 +134,7 @@ export default function RegistrationPageComponent() {
                                     </div>
                                     <div className="form-group col-4">
                                         <label htmlFor="birthDate">BirthDate:</label>
-                                        <input type="datetime-local" name="birthDate" value={birthDate}
+                                        <input type="date" name="birthDate" value={birthDate}
                                                onChange={(e) => setBirthDate(e.target.value)} className="form-control"/>
                                     </div>
 
@@ -247,10 +250,9 @@ export default function RegistrationPageComponent() {
                         <br/>
 
                         <Tab eventKey="dependent" title="Family members">
-
-                            <DependentTab />
-
+                            <DependentTab onDependentChange = {handleDependentsChange}/>
                         </Tab>
+
                         <br/>
                     </Tabs>
                     <br/>

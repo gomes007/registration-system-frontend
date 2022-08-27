@@ -1,4 +1,5 @@
 import AddressModel from "./AddressModel";
+import PersonalInformationModel from "./PersonalInformationModel";
 
 export default class EmployeeModel {
     id;
@@ -19,5 +20,14 @@ export default class EmployeeModel {
         this.languages = languages;
         this.address = address;
         this.dependents = dependents;
+        this.personalInformation = new PersonalInformationModel(
+            name,
+            email,
+            cpf,
+            phone,
+            birthDate,
+            gender,
+            otherInformations
+        );
     }
 }

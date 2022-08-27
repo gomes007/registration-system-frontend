@@ -1,6 +1,6 @@
 import {useRef, useState} from "react";
 import {AddressDelete} from "./AddressDelete";
-import {Dialog} from "./Dialog";
+import {AddressDialog} from "./AddressDialog";
 
 
 const AddressTable = (props) => {
@@ -83,9 +83,9 @@ const AddressTable = (props) => {
                 </tbody>
             </table>
 
-            <Dialog setDialogOpen={setDialogOpen} dialogOpen={dialogOpen} address={chosedAddress}
-                    setAddress={setChosedAddress}
-                    confirmEdit={confirmEdit}/>
+            <AddressDialog setDialogOpen={setDialogOpen} dialogOpen={dialogOpen} address={chosedAddress}
+                           setAddress={setChosedAddress}
+                           confirmEdit={confirmEdit}/>
 
             <AddressDelete ref={deleteComponent} onConfirmed={() => deleteAddress()}/>
 

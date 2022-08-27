@@ -17,22 +17,11 @@ import {SidebarLayout} from "../components/SidebarLayout";
 
 
 export default function AppRouter() {
-    // const location = useParams();
-    // useEffect(() => {
-    //     console.log(location)
-    // }, [location])
-    //
-    // const [showBar, setShowBar] = useState(false);
 
     return (
 
         <BrowserRouter>
 
-            {/*{showBar && <nav>*/}
-            {/*    <NavBar/>*/}
-            {/*</nav>}*/}
-
-            {/*{window.location.pathname === '/login' ? null : <NavBar/>}*/}
             <div className="container">
 
                 <Routes>
