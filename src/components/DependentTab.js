@@ -53,8 +53,6 @@ const DependentTab = ({onDependentChange}) => {
     }, [gender]);
 
 
-
-
     const clickSaveDependent = () => {
         const listDependent = dependents;
         listDependent.push(new DependentModel(kinship, name, email, cpf, phone, birthDate, gender));
