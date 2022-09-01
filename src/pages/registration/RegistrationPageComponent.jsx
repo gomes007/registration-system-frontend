@@ -1,22 +1,18 @@
-import {useState} from "react";
-import {saveEmployee} from "../../services/EmployeeService";
+import { Switch } from '@material-ui/core';
+import { FormControlLabel, FormLabel, Radio, RadioGroup } from "@mui/material";
+import { Checkbox } from 'primereact/checkbox';
+import { InputTextarea } from "primereact/inputtextarea";
+import { useCallback, useState } from "react";
+import { Tab } from "react-bootstrap";
 import Tabs from "react-bootstrap/Tabs";
-import {Tab} from "react-bootstrap";
-import EmployeeModel from "../../model/EmployeeModel";
-import {FormControlLabel, FormLabel, Radio, RadioGroup} from "@mui/material";
-import {InputTextarea} from "primereact/inputtextarea";
-import {Checkbox} from 'primereact/checkbox';
-import {Switch} from '@material-ui/core';
+import { AddressTable } from "../../components/AddressTable";
+import { DependentTab } from "../../components/DependentTab";
 import AddressModel from "../../model/AddressModel";
-import {AddressTable} from "../../components/AddressTable";
-import {DependentTab} from "../../components/DependentTab";
-
-
-
-
+import EmployeeModel from "../../model/EmployeeModel";
+import { saveEmployee } from "../../services/EmployeeService";
+import { getDownloadURL, uploadFile } from "../../services/FileManagementService";
 
 export default function RegistrationPageComponent() {
-
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [cpf, setCpf] = useState('');
@@ -38,22 +34,43 @@ export default function RegistrationPageComponent() {
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
 
-    const [dependents, SetDependents] = useState([]);
+    const [dependents, setDependents] = useState([]);
 
-
-
-
+    const [profilePhoto, setProfilePhoto] = useState('default.jpeg');
+    const [profilePhotoFile, setProfilePhotoFile] = useState(null);
 
     const clickSaveEmployee = () => {
-        const employee = new EmployeeModel(name, email, cpf, phone, birthDate, gender,
-            retired, maritalStatus, otherInformations, salary, languages, address, dependents);
-        saveEmployee(employee).then(() => {
-            cleanEmployeeField();
-        }).catch((err) => {
-            console.log(err);
-        })
-    }
+        const employee = new EmployeeModel(
+            name,
+            email,
+            cpf,
+            phone,
+            birthDate,
+            gender,
+            retired,
+            maritalStatus,
+            otherInformations,
+            salary,
+            languages,
+            address,
+            dependents,
+            profilePhoto
+        );
+        uploadFile(profilePhotoFile)
+            .then(uploadedFileName => {
+                setProfilePhoto(uploadedFileName);
+                return uploadedFileName;
+            })
+            .then(uploadedFileName => {
+                employee.profilePhoto = uploadedFileName;
 
+                return saveEmployee(employee).then(() => {
+                    cleanEmployeeField();
+                }).catch((err) => {
+                    console.log(err);
+                })
+            });
+    }
 
     const clickSaveAddress = () => {
         const listAddress = address;
@@ -61,8 +78,6 @@ export default function RegistrationPageComponent() {
         setAddress(listAddress);
         cleanAddressField();
     }
-
-
 
     const onLanguageChange = (e) => {
         let selectedLanguages = [...languages];
@@ -88,11 +103,19 @@ export default function RegistrationPageComponent() {
         setState('');
     }
 
-
     const switchHandler = (event) => {
         setRetired(event.target.retired);
     };
 
+    const handleDependentsChange = useCallback((dependentsList) => {
+        setDependents(dependentsList);
+    }, []);
+
+    const handleImageSelection = useCallback((event) => {
+        const file = event.target.files[0];
+        setProfilePhoto(URL.createObjectURL(file));
+        setProfilePhotoFile(file);
+    }, []);
 
     return (
         <div className="container content">
@@ -107,7 +130,21 @@ export default function RegistrationPageComponent() {
                         <Tab eventKey="profile" title="Profile">
                             <div className="card-body">
                                 <div className="row">
-
+                                    <div className="form-group col-12">
+                                        <input
+                                            type="file"
+                                            name="profilePhoto"
+                                            id="profilePhoto"
+                                            accept=".png,.jpeg,.jpg"
+                                            onChange={handleImageSelection} />
+                                        <img
+                                            src={getDownloadURL(profilePhoto)}
+                                            alt="Foto do Perfil"
+                                            className="profile-photo" />
+                                        {/* <div className="overlay" >
+                                            <span>📷</span>
+                                        </div> */}
+                                    </div>
                                     <div className="form-group col-6">
                                         <label htmlFor="name">Name:</label>
                                         <input type="text" name="name" value={name}
@@ -131,7 +168,7 @@ export default function RegistrationPageComponent() {
                                     </div>
                                     <div className="form-group col-4">
                                         <label htmlFor="birthDate">BirthDate:</label>
-                                        <input type="datetime-local" name="birthDate" value={birthDate}
+                                        <input type="date" name="birthDate" value={birthDate}
                                                onChange={(e) => setBirthDate(e.target.value)} className="form-control"/>
                                     </div>
 
@@ -248,7 +285,7 @@ export default function RegistrationPageComponent() {
 
                         <Tab eventKey="dependent" title="Family members">
 
-                            <DependentTab />
+                            <DependentTab onDependentsChange={handleDependentsChange}/>
 
                         </Tab>
                         <br/>

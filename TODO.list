@@ -1,7 +1,19 @@
 TODO list
-[] - Mudar nome do botão de adicionar dependentes
-[] - Adicionar componente de tabela que exibe a lista de dependentes na mesma página de cadastro
-[] - Campo para adicionar foto no registration page
+[X] - Mudar nome do botão de adicionar dependentes
+[X] - Adicionar componente de tabela que exibe a lista de dependentes na mesma página de cadastro
+[X] - Campo para adicionar foto no registration page (implementação de pasta local)
+[] - Campo para adicionar foto no registration page (implementação de cdn)
 [] - Campo para salvar documentos anexados na página de registration
-[] - Adicionar feedback de cadastro
+[] - Adicionar feedback de cadastro (loading icon e mensagem de erro ou sucesso)
 [] - Melhorar HTML responsivo
+[] - ocultar sidebar tela login
+[] - sidebar menu ocultar e reexibir
+[] - sidebar menu com droplist submenus
+[] - tela novo cadastro [object Object] correcao
+[] - tempo e secao por usuario
+[] - Remover token expirado da LocalStorage
+[] - PickList para definir acessos a paginas do sistema
+[] - classe agregação dados pessoais como usar no react js
+[] - Integrações de API: Mídias sociais (Facebook, Twitter, etc), com Spring Social
+[] - consumir api web e salvar banco dados
+[] - Trocar LocalDateTime por LocalDate employee registration page (front e backend)
