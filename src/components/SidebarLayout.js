@@ -5,7 +5,9 @@ import MySideBar from "./MySideBar";
 const SidebarLayout = () => (
     <>
         <NavBar/>
-        <Outlet/>
+        <div className="sidebar-content-responsive">
+            <Outlet/>
+        </div>
     </>
 );
 

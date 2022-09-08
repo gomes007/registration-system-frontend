@@ -33,7 +33,7 @@ export default function AppRouter() {
             {/*</nav>}*/}
 
             {/*{window.location.pathname === '/login' ? null : <NavBar/>}*/}
-            <div className="container">
+            <div className="container-responsive main">
 
                 <Routes>
                     <Route element={<SidebarLayout/>}>

@@ -9,8 +9,8 @@ const DependentsTable = ({ dependents }) => {
             <th scope="col">Name</th>
             <th scope="col">E-mail</th>
             <th scope="col">Social Code</th>
-            <th scope="col">Edit</th> {/** Edição */}
-            <th scope="col">Delete</th> {/** Deleção */}
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
           </tr>
         </thead>
         <tbody>

@@ -29,7 +29,7 @@ export default function HomePageComponent(props) {
 
 
     return (
-        <div className="content">
+        <div className="container content">
 
             <SalesGraph data={list}/>
 
