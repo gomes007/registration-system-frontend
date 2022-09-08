@@ -1,8 +1,8 @@
-import {useCallback, useState} from "react";
+import {useState} from "react";
 import DependentModel from "../model/DependentModel";
 import {DependentTable} from "./DependentTable";
 
-const DependentTab = ({onDependentChange}) => {
+const DependentTab = (props) => {
 
     const [kinship, setKinship] = useState('');
     const [name, setName] = useState('');
@@ -15,49 +15,11 @@ const DependentTab = ({onDependentChange}) => {
     const [dependents, setDependents] = useState([]);
 
 
-    //---------------CallBack----------------------------------//
-
-    const handleKinship = useCallback(() => {
-        const value = e.target.value;
-        setKinship(value);
-    }, [kinship]);
-
-    const handleName = useCallback(() => {
-        const value = e.target.value;
-        setName(value);
-    }, [name]);
-
-    const handleEmail = useCallback(() => {
-        const value = e.target.value;
-        setEmail(value);
-    }, [email]);
-
-    const handleCpf = useCallback(() => {
-        const value = e.target.value;
-        setCpf(value);
-    }, [cpf]);
-
-    const handlePhone = useCallback(() => {
-        const value = e.target.value;
-        setPhone(value);
-    }, [phone]);
-
-    const handleBirthDate = useCallback(() => {
-        const value = e.target.value;
-        setBirthDate(value);
-    }, [birthDate]);
-
-    const handleGender = useCallback(() => {
-        const value = e.target.value;
-        setGender(value);
-    }, [gender]);
-
-
     const clickSaveDependent = () => {
         const listDependent = dependents;
         listDependent.push(new DependentModel(kinship, name, email, cpf, phone, birthDate, gender));
         setDependents(listDependent);
-        onDependentChange(listDependent);
+        props.onDependentChange(listDependent);
         cleanFields();
     }
 
@@ -116,7 +78,7 @@ const DependentTab = ({onDependentChange}) => {
 
             </div>
             <br/>
-                <DependentTable dependents={dependents}/>
+                <DependentTable items={dependents} setDependent={setDependents}/>
             <br/>
 
             <button className="btn btn-dark" onClick={clickSaveDependent}>Add FamilyMembers</button>

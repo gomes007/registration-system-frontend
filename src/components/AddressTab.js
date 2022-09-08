@@ -76,9 +76,11 @@ export default function AddressTab({onAddressChange}) {
                 </div>
 
             </div>
+
             <br/>
-            <AddressTable items={address} setAddress={setAddress}/>
+                <AddressTable items={address} setAddress={setAddress}/>
             <br/>
+
             <button className="btn btn-dark" onClick={clickSaveAddress}>Add Address</button>
         </div>
     )

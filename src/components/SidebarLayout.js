@@ -1,11 +1,13 @@
 import {NavBar} from "./NavBar";
 import {Outlet} from "react-router";
-import MySideBar from "./MySideBar";
+import Header from "./Header";
 
 const SidebarLayout = () => (
     <>
-        <NavBar/>
-        <Outlet/>
+        <Header/>
+        <div className="sidebar-content-responsive">
+            <Outlet/>
+        </div>
     </>
 );
 

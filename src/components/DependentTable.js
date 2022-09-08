@@ -1,4 +1,26 @@
-const DependentTable = ({dependents}) => {
+import {useState} from "react";
+import {DependentDialog} from "./DependentDialog";
+
+const DependentTable = (props) => {
+
+    //---------------Edit------------------------------------------//
+    const [dialogOpen, setDialogOpen] = useState(false);
+
+    const [chosedDependent, setChosedDependent] = useState({});
+
+    const [index, setIndex] = useState(0);
+
+    const clickEdit = (i) => {
+        setIndex(i)
+        setChosedDependent(props.items[i])
+        setDialogOpen(true);
+    }
+
+    const confirmEdit = (actualDependent) => {
+        const dependentList = props.items;
+        dependentList[index] = actualDependent;
+        props.setDependent(dependentList);
+    }
 
     return (
         <div>
@@ -16,25 +38,30 @@ const DependentTable = ({dependents}) => {
                 </tr>
                 </thead>
                 <tbody>
-                {dependents.map((dependent, idx) => {
-                    return(
-                    <tr key={idx}>
-                        <td scope="col">{idx + 1}</td>
-                        <td scope="col">{dependent.kinship}</td>
-                        <td scope="col">{dependent.personalInformation.name}</td>
-                        <td scope="col">{dependent.personalInformation.email}</td>
-                        <td scope="col">{dependent.personalInformation.cpf}</td>
-                        <td scope="col">
-                            <button type="button" className="btn btn-info btn-sm">Edit</button>
-                        </td>
-                        <td scope="col">
-                            <button type="button" className="btn btn-danger btn-sm">Delete</button>
-                        </td>
-                    </tr>
+                {props.items.map((item, idx) => {
+                    return (
+                        <tr key={idx}>
+                            <td scope="col">{idx + 1}</td>
+                            <td scope="col">{item.kinship}</td>
+                            <td scope="col">{item.personalInformation.name}</td>
+                            <td scope="col">{item.personalInformation.email}</td>
+                            <td scope="col">{item.personalInformation.cpf}</td>
+                            <td scope="col">
+                                <button type="button" className="btn btn-info btn-sm"
+                                        onClick={() => clickEdit(index)}>Edit
+                                </button>
+                            </td>
+                            <td scope="col">
+                                <button type="button" className="btn btn-danger btn-sm">Delete</button>
+                            </td>
+                        </tr>
                     )
                 })}
                 </tbody>
             </table>
+            <div>
+                <DependentDialog setDialogOpen={setDialogOpen} dialogOpen={dialogOpen} dependents={chosedDependent} confirmEdit={confirmEdit}/>
+            </div>
         </div>
     )
 }

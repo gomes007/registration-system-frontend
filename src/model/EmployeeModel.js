@@ -5,7 +5,7 @@ export default class EmployeeModel {
     id;
     constructor(name = '', email= '', cpf= '', phone= '', birthDate= '', gender= '',
                 retired= false, maritalStatus= '', otherInformations= '', salary= '', languages= [],
-                address = [], dependents = []) {
+                address = [], dependents = [], profilePhoto = '') {
 
         this.name = name;
         this.email = email;
@@ -20,6 +20,7 @@ export default class EmployeeModel {
         this.languages = languages;
         this.address = address;
         this.dependents = dependents;
+        this.profilePhoto = profilePhoto;
         this.personalInformation = new PersonalInformationModel(
             name,
             email,

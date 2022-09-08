@@ -9,6 +9,7 @@ import {Checkbox} from 'primereact/checkbox';
 import {Switch} from '@material-ui/core';
 import {DependentTab} from "../../components/DependentTab";
 import AddressTab from "../../components/AddressTab";
+import {getDownloadURL, uploadFile} from "../../services/FileManagementService";
 
 
 export default function RegistrationPageComponent() {
@@ -25,22 +26,53 @@ export default function RegistrationPageComponent() {
     const [salary, setSalary] = useState('');
     const [languages, setLanguages] = useState([]);
 
+    const [profilePhoto, setProfilePhoto] = useState('default.jpeg');
+    const [profilePhotoFile, setProfilePhotoFile] = useState(null);
+
 
     const [address, setAddress] = useState([]);
-    const [dependents, setDependents] = useState([])
+    const [dependents, setDependents] = useState([]);
+
+
+    const handleImageSelection = useCallback((event) => {
+        const file = event.target.files[0];
+        setProfilePhoto(URL.createObjectURL(file));
+        setProfilePhotoFile(file);
+    }, []);
 
 
     const clickSaveEmployee = () => {
-        const employee = new EmployeeModel(name, email, cpf, phone, birthDate, gender,
-            retired, maritalStatus, otherInformations, salary, languages, address, dependents);
-        saveEmployee(employee).then(() => {
-            cleanEmployeeField();
-        }).catch((err) => {
-            console.log(err);
-        })
+        const employee = new EmployeeModel(
+            name,
+            email,
+            cpf,
+            phone,
+            birthDate,
+            gender,
+            retired,
+            maritalStatus,
+            otherInformations,
+            salary,
+            languages,
+            address,
+            dependents,
+            profilePhoto
+        );
+        uploadFile(profilePhotoFile)
+            .then(uploadedFileName => {
+                setProfilePhoto(uploadedFileName);
+                return uploadedFileName;
+            })
+            .then(uploadedFileName => {
+                employee['profilePhoto'] = uploadedFileName;
+
+                return saveEmployee(employee).then(() => {
+                    cleanEmployeeField();
+                }).catch((err) => {
+                    console.log(err);
+                })
+            });
     }
-
-
 
 
     const onLanguageChange = (e) => {
@@ -64,7 +96,7 @@ export default function RegistrationPageComponent() {
         setBirthDate('');
         setGender('');
         setCpf('');
-
+        setProfilePhoto('default.jpeg');
     }
 
 
@@ -79,7 +111,7 @@ export default function RegistrationPageComponent() {
 
     const handleAddressChange = useCallback((addressList)=>{
         setAddress(addressList);
-    })
+    },[]);
 
 
     return (
@@ -96,11 +128,28 @@ export default function RegistrationPageComponent() {
                             <div className="card-body">
                                 <div className="row">
 
+
+
+                                    <div className="form-group col-12">
+
+                                        <img src={getDownloadURL(profilePhoto)} alt="Foto do perfil"
+                                             className="profile-photo"/>
+                                        <input
+                                            type="file"
+                                            name="profilePhoto" id="profilePhoto"
+                                            accept=".png, .jpeg, .jpg"
+                                            onChange={handleImageSelection}/>
+                                    </div>
+
                                     <div className="form-group col-6">
                                         <label htmlFor="name">Name:</label>
                                         <input type="text" name="name" value={name}
                                                onChange={(e) => setName(e.target.value)} className="form-control"/>
                                     </div>
+
+
+
+
                                     <div className="form-group col-6">
                                         <label htmlFor="email">Email:</label>
                                         <input type="text" name="email" value={email}
@@ -189,8 +238,6 @@ export default function RegistrationPageComponent() {
                             </div>
                         </Tab>
 
-                        <br/>
-
                         <Tab eventKey="address" title="Address">
                             <AddressTab onAddressChange={handleAddressChange}/>
                         </Tab>
@@ -199,7 +246,6 @@ export default function RegistrationPageComponent() {
                             <DependentTab onDependentChange={handleDependentsChange}/>
                         </Tab>
 
-                        <br/>
                     </Tabs>
                     <br/>
                     <div>

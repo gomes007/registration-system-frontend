@@ -14,6 +14,7 @@ import {ForgotPassword} from "../pages/profile/forgotPassword";
 import {RecoveryPassword} from "../pages/recovery/recovery";
 import {ConfirmPassword} from "../pages/recovery/ConfirmationPassword";
 import {SidebarLayout} from "../components/SidebarLayout";
+import Header from "../components/Header";
 
 
 export default function AppRouter() {
@@ -22,7 +23,7 @@ export default function AppRouter() {
 
         <BrowserRouter>
 
-            <div className="container">
+            <div className="container-responsive main">
 
                 <Routes>
                     <Route element={<SidebarLayout/>}>
@@ -37,6 +38,12 @@ export default function AppRouter() {
                         <Route path="/list" element={
                             <AuthGuard roles={[Role.ADMIN, Role.USER]}>
                                 <ListPageComponentTable/>
+                            </AuthGuard>
+                        }/>
+
+                        <Route path="/header" element={
+                            <AuthGuard roles={[Role.ADMIN, Role.USER]}>
+                                <Header/>
                             </AuthGuard>
                         }/>
 

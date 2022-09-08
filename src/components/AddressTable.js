@@ -19,7 +19,7 @@ const AddressTable = (props) => {
     }
 
 
-    const confirmEdit = (actualAddress) => {
+    const confirmEdit = (actualAddress) => {''
         const addressList = props.items;
         addressList[index] = actualAddress;
         props.setAddress(addressList);

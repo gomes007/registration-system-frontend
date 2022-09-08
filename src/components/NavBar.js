@@ -8,7 +8,6 @@ import './header.css';
 import {FiClipboard, FiFilePlus, FiHome, FiLogOut, FiUser} from "react-icons/fi";
 
 
-
 const NavBar = () => {
 
     const currentUser = useSelector(state => state.user);
@@ -22,10 +21,8 @@ const NavBar = () => {
     }
 
 
-
     return (
-
-         <div className="sidebar">
+        <div className="sidebar">
             <a href="https://reactjs.org" className="navbar-brand ms-0">
                 <img src={logo} className="App-logo" alt="logo"/>
             </a>
@@ -35,22 +32,29 @@ const NavBar = () => {
                 <div className="navbar-nav">
                     <li className="nav-item">
                         <NavLink to="/" className="nav-link">
-                            <FiHome color="#FFF" size={24} />
+                            <FiHome color="#FFF" size={24}/>
                             Home
                         </NavLink>
                     </li>
 
                     <li className="nav-item">
                         <NavLink to="/registration" className="nav-link">
-                            <FiFilePlus color="#FFF" size={24} />
+                            <FiFilePlus color="#FFF" size={24}/>
                             Registration
                         </NavLink>
                     </li>
 
                     <li className="nav-item">
                         <NavLink to="/list" className="nav-link">
-                            <FiClipboard color="#FFF" size={24} />
+                            <FiClipboard color="#FFF" size={24}/>
                             List
+                        </NavLink>
+                    </li>
+
+                    <li className="nav-item">
+                        <NavLink to="/header" className="nav-link">
+                            <FiClipboard color="#FFF" size={24}/>
+                            Header
                         </NavLink>
                     </li>
 
@@ -86,14 +90,14 @@ const NavBar = () => {
                 <div className="navbar-nav ms-auto">
                     <li className="nav-item">
                         <NavLink to="/profile" className="nav-link">
-                            <FiUser color="#FFF" size={24} />
+                            <FiUser color="#FFF" size={24}/>
                             {currentUser.name}
                         </NavLink>
                     </li>
 
                     <li className="nav-item">
                         <a href="" className="nav-link" onClick={() => logout()}>
-                            <FiLogOut color="#FFF" size={24} />
+                            <FiLogOut color="#FFF" size={24}/>
                             Sign Out
                         </a>
                     </li>
