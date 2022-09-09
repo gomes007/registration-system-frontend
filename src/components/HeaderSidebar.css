@@ -1,10 +1,11 @@
 #header {
-    position: absolute;
-    width: 220px;
+    position: relative;
 }
+
 #header .pro-sidebar {
     height: 100vh;
 }
+
 #header .closemenu {
     color: #000;
     position: absolute;
@@ -16,66 +17,95 @@
     font-size: 22px;
     top: 55px;
     cursor: pointer;
+    background-color: #FFFFFF;
 }
+
 #header .pro-sidebar {
     width: 100%;
     min-width: 100%;
 }
+
 #header .pro-sidebar.collapsed {
     width: 80px;
     min-width: 80px;
 }
+
 #header .pro-sidebar-inner {
     background-color: white;
     box-shadow: 0.5px 0.866px 2px 0px rgba(0, 0, 0, 0.15);
 }
+
 #header .pro-sidebar-inner .pro-sidebar-layout {
     overflow-y: hidden;
 }
+
 #header .pro-sidebar-inner .pro-sidebar-layout .logotext p {
     font-size: 20px;
     padding: 0 20px;
     color: #000;
     font-weight: bold;
 }
+
 #header .pro-sidebar-inner .pro-sidebar-layout ul {
     padding: 0 5px;
 }
+
 #header .pro-sidebar-inner .pro-sidebar-layout ul .pro-inner-item {
     color: #000;
     margin: 10px 0px;
     font-weight: bold;
 }
+
 #header .pro-sidebar-inner .pro-sidebar-layout ul .pro-inner-item .pro-icon-wrapper {
     background-color: white;
     color: #000;
     border-radius: 3px;
 }
+
 #header .pro-sidebar-inner .pro-sidebar-layout ul .pro-inner-item .pro-icon-wrapper .pro-item-content {
     color: #000;
 }
+
 #header .pro-sidebar-inner .pro-sidebar-layout .active {
     background-image: linear-gradient(0deg, #fece00 0%, #ffe172 100%);
 }
+
 #header .logo {
     padding: 20px;
 }
 
-.menu-hover{
+/*08 set*/
+
+#header .pro-sidebar-inner .pro-sidebar-layout ul .pro-inner-item:hover,
+#header .pro-sidebar-inner .pro-sidebar-layout ul .pro-inner-item:hover .pro-icon-wrapper {
+    background-color: lightgrey;
+}
+
+#header .pro-sidebar .pro-menu > ul > .pro-sub-menu > .pro-inner-list-item,
+#header .pro-sidebar.collapsed .pro-menu > ul > .pro-menu-item.pro-sub-menu > .pro-inner-list-item > .popper-inner {
+    background-color: transparent;
 
 }
 
-.menu-hover:hover{
-
+#header .pro-sidebar.collapsed .pro-menu > ul > .pro-menu-item.pro-sub-menu:hover > .pro-inner-list-item {
+    border: solid 0.1rem #cecece;
+    border-radius: 0.5rem;
+    background-color: #ffffff;
 }
 
-.test{
-
+#header .pro-sidebar.collapsed .pro-menu > ul > .pro-menu-item.pro-sub-menu:hover > .pro-inner-list-item::before {
+    content: '';
+    border: solid 1rem #cecece;
+    position: absolute;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+    margin-top: 4rem;
+    margin-left: -2.2rem;
 }
 
-.test :hover{
+/*08 set*/
 
-}
 
 @media only screen and (max-width: 720px) {
     html {

@@ -128,8 +128,6 @@ export default function RegistrationPageComponent() {
                             <div className="card-body">
                                 <div className="row">
 
-
-
                                     <div className="form-group col-12">
 
                                         <img src={getDownloadURL(profilePhoto)} alt="Foto do perfil"
@@ -146,9 +144,6 @@ export default function RegistrationPageComponent() {
                                         <input type="text" name="name" value={name}
                                                onChange={(e) => setName(e.target.value)} className="form-control"/>
                                     </div>
-
-
-
 
                                     <div className="form-group col-6">
                                         <label htmlFor="email">Email:</label>

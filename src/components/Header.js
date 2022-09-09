@@ -2,7 +2,7 @@
 import React, {useState} from "react";
 
 //import react pro sidebar components
-import {Menu, MenuItem, ProSidebar, SidebarContent, SidebarFooter, SidebarHeader} from "react-pro-sidebar";
+import {Menu, MenuItem, ProSidebar, SidebarContent, SidebarFooter, SidebarHeader, SubMenu} from "react-pro-sidebar";
 
 //import icons from react icons
 import {FaList} from "react-icons/fa";
@@ -53,10 +53,20 @@ const Header = () => {
                                 Registration
                                 <NavLink to="/registration"/>
                             </MenuItem>
-                            <MenuItem icon={<FaList size={18}/>}>
-                                List
-                                <NavLink to="/list"/>
-                            </MenuItem>
+                            <SubMenu title={"List"} icon={<FaList size={18} />}>
+                                <MenuItem icon={<FaList size={18} />}>
+                                    List - All
+                                    <NavLink to="/list" />
+                                </MenuItem>
+                                <MenuItem icon={<FaList size={18} />}>
+                                    List - sub 1
+                                    <NavLink to="/list/sub-1" />
+                                </MenuItem>
+                                <MenuItem icon={<FaList size={18} />}>
+                                    List - sub 2
+                                    <NavLink to="/list/sub-2" />
+                                </MenuItem>
+                            </SubMenu>
                             <MenuItem icon={<RiPencilLine size={18}/>}>Author</MenuItem>
                             <MenuItem icon={<BiCog size={18}/>}>Settings</MenuItem>
                         </Menu>
