@@ -1,5 +1,5 @@
 //import useState hook to create menu collapse state
-import React, {useState} from "react";
+import React, {useCallback, useState} from "react";
 
 //import react pro sidebar components
 import {Menu, MenuItem, ProSidebar, SidebarContent, SidebarFooter, SidebarHeader, SubMenu} from "react-pro-sidebar";
@@ -15,18 +15,28 @@ import {BiCog} from "react-icons/bi";
 //import sidebar css from react-pro-sidebar module and our custom css
 import "react-pro-sidebar/dist/css/styles.css";
 import "./HeaderSidebar.css";
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
+import { clearCurrentUser } from "../store/actions/user";
+import { useDispatch } from "react-redux";
 
 
 const Header = () => {
     //create initial menuCollapse state using useState hook
     const [menuCollapse, setMenuCollapse] = useState(false);
 
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     //create a custom function that will change menucollapse state from false to true and true to false
     const menuIconClick = () => {
         //condition checking to change state from true to false and vice versa
         menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
     };
+
+    const handleLogout = useCallback(() => {
+        dispatch(clearCurrentUser());
+        navigate('/login');
+    }, []);
 
     return (
         <>
@@ -73,7 +83,7 @@ const Header = () => {
                     </SidebarContent>
                     <SidebarFooter>
                         <Menu iconShape="square">
-                            <MenuItem icon={<FiLogOut/>}>Logout</MenuItem>
+                            <MenuItem icon={<FiLogOut/>} onClick={handleLogout}>Logout</MenuItem>
                         </Menu>
                     </SidebarFooter>
                 </ProSidebar>

@@ -1,38 +1,20 @@
 import {useEffect, useState} from "react";
-import {getAllSale} from "../../services/SaleService";
+import {getAllSale, getAllSalesWebSocket} from "../../services/SaleService";
+import SalesByDayGraph from "./SalesByDayGraph";
 import SalesGraph from "./SalesGraph";
 
 export default function HomePageComponent(props) {
 
     const [list, setList] = useState([]);
 
-    // useEffect(() => {
-    //     setInterval(()=> {
-    //         getAllSale().then(res => {
-    //             setList(res.data)
-    //         }).catch((err) => {
-    //             console.log(err);
-    //         })
-    //     },5000)
-    //
-    // }, [])
-
-
     useEffect(() => {
-
-        getAllSale().then(res => {
-            setList(res.data)
-        }).catch((err) => {
-            console.log(err);
-        })
-    }, [])
-
+        getAllSalesWebSocket(setList);
+    }, []);
 
     return (
         <div className="container content">
-
             <SalesGraph data={list}/>
-
+            <SalesByDayGraph data={list} />
         </div>
     )
 }
