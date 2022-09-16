@@ -21,6 +21,7 @@ const getAllSale = () => {
 };
 
 const getAllSalesWebSocket = (callback) => {
+  const baseHeaders = authHeader();
   const socket = new SockJS(`${BASE_WEBSOCKET_URL}/sales`, null, {
     server: "sales-backend",
   });
@@ -28,7 +29,8 @@ const getAllSalesWebSocket = (callback) => {
   client.debug = () => {};
   client.connect(
     {
-      "heart-beat": { incoming: 1000, outgoing: 1000 }
+      "heart-beat": '0,1000',
+      "Authorization": baseHeaders.authorization
     },
     (_frame) => {
       client.subscribe("/topic/sales", (data) => {
