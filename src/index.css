@@ -28,3 +28,17 @@ code {
   height: calc(100vh - 250px);
   overflow-y: scroll;
 }
+
+.sales-total {
+  display: flex;
+  width: 25rem;
+  justify-content: space-between;
+  border: solid 0.05rem #cecece;
+  border-radius: 0.4rem;
+  padding: 1rem;
+  align-items: center;
+}
+
+.sales-total p {
+  margin: 0;
+}
